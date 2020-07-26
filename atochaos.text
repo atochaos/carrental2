@@ -1,0 +1,54 @@
+cd C:\kafka_2.13-2.5.0\bin\windows
+zookeeper-server-start.bat ../../config/zookeeper.properties
+
+
+cd C:\kafka_2.13-2.5.0\bin\windows
+kafka-server-start.bat ../../config/server.properties
+
+
+
+* 관리
+http POST http://localhost:8085/carManagements carNo=1111 rentalAmt=1000000 carRegDt=20200726 procStatus="FIRST"
+http POST http://localhost:8085/carManagements carNo=2222 rentalAmt=2000000 carRegDt=20200726 procStatus="FIRST"
+http POST http://localhost:8085/carManagements carNo=3333 rentalAmt=3000000 carRegDt=20200726 procStatus="FIRST"
+
+http GET http://localhost:8085/carManagements
+
+
+* 예약
+http POST http://localhost:8082/carReservations resrvNo=1 resrvDt=20200726 carNo=1111 rentalDt=20200726 custNo=1001 paymtNo=P111 rentalAmt=1000000
+http GET http://localhost:8082/carReservations
+
+http GET http://localhost:8082/carReservations
+
+
+http GET http://localhost:8083/payments
+
+
+http GET http://localhost:8084/carInformations
+
+
+    public void setResrvNo(String resrvNo) {
+        this.resrvNo = resrvNo;
+    }
+    public void setResrvDt(String resrvDt) {
+        this.resrvDt = resrvDt;
+    }
+    public void setCarNo(String carNo) {
+        this.carNo = carNo;
+    }
+    public void setRentalDt(String rentalDt) {
+        this.rentalDt = rentalDt;
+    }
+    public void setCustNo(String custNo) {
+        this.custNo = custNo;
+    }
+    public void setProcStatus(String procStatus) {
+        this.procStatus = procStatus;
+    }
+    public void setPaymtNo(String paymtNo) {
+        this.paymtNo = paymtNo;
+    }
+    public void setRentalAmt(Long rentalAmt) {
+        this.rentalAmt = rentalAmt;
+    }
